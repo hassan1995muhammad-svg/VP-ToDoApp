@@ -1,0 +1,27 @@
+# Stage 1: Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy csproj and restore dependencies
+COPY ["VP-ToDo-App/VP-ToDo-App.csproj", "VP-ToDo-App/"]
+RUN dotnet restore "VP-ToDo-App/VP-ToDo-App.csproj"
+
+# Copy everything else and build
+COPY VP-ToDo-App/. VP-ToDo-App/
+WORKDIR "/src/VP-ToDo-App"
+RUN dotnet build "VP-ToDo-App.csproj" -c Release -o /app/build
+
+# Stage 2: Publish
+FROM build AS publish
+RUN dotnet publish "VP-ToDo-App.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Stage 3: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+EXPOSE 8080
+
+# Copy published app
+COPY --from=publish /app/publish .
+
+# Simple startup - InMemory database, no migrations!
+ENTRYPOINT ["dotnet", "VP-ToDo-App.dll"]

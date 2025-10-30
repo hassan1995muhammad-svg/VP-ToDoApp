@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  # VP-ToDo-App API with InMemory Database
+  vptodo-api:
+    build:
+      context: .
+      dockerfile: VP-ToDo-App/Dockerfile.inmemory
+    container_name: vptodo-api-inmemory
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "5059:8080"
+    restart: on-failure

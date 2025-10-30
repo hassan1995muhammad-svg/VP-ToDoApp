@@ -1,0 +1,67 @@
+.todo-input {
+    border-bottom: 1px solid #ededed;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 16px 8px;
+}
+
+.chevron {
+    font-size: 18px;
+    color: #e6e6e6;
+    cursor: pointer;
+    padding: 0 12px;
+    user-select: none;
+}
+
+.task-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    font-weight: 300;
+    color: #4d4d4d;
+    padding: 0;
+    background: transparent;
+}
+
+    .task-input::placeholder {
+        color: #e6e6e6;
+        font-style: italic;
+    }
+
+.expanded-options {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px 16px 48px;
+}
+
+.date-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+    .date-input:focus {
+        border-color: #4a90e2;
+    }
+
+.add-btn {
+    padding: 8px 24px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+    .add-btn:hover {
+        background: #357abd;
+    }

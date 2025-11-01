@@ -1,7 +1,7 @@
 # VP-ToDoApp
 Verbund Pflegehilfe - ToDo App
 
-# VP ToDo App - Backend API
+# VP ToDo App - Full Stack Application
 
 ToDo application backend built with .NET 8, following **Clean Architecture** principles with **CQRS pattern**, **MediatR**, **Repository Pattern**, **In Memory**, and comprehensive logging using **Serilog**.
 
@@ -16,22 +16,19 @@ Infrastructure Layer (Repos)
 
 Choose your preferred deployment method:
 
-### **Docker (Recommended)** 
+### **Option 1: Local Development**
 
-Both frontend and backend services can be started without docker simply by using dotetnet CLI or Visual Studio.
-
+**Backend:**
+```bash
 # Navigate to the backend project directory
 cd VP-ToDo-App
 
 # Run the backend
 dotnet run
+```
 
-# Navigate to the backend project directory
-cd VP-ToDo-App
-
-# Run the backend
-dotnet run
-
+**Frontend:**
+```bash
 # Navigate to the frontend directory
 cd frontend
 
@@ -40,22 +37,27 @@ npm install
 
 # Start the development server
 npm start
+```
 
-# If you have docker desktop installed, you can run the entire application (API + Frontend) using Docker Compose.
+### **Option 2: Docker (Recommended)**
+
+If you have docker desktop installed, you can run the entire application (API + Frontend) using Docker Compose.
 
 ```bash
 # Start API + Frontend Server in containers
-
-    docker-compose docker-compose.fullstack.yml up
-
+docker-compose -f docker-compose.fullstack.yml up
 ```
+
+**Access Points:**
+- API: `http://localhost:5059`
+- Swagger: `http://localhost:5059/swagger`
+- Frontend: `http://localhost:3000`
 
 ##  **Documentation**
 
 | Document | Description |
 |----------|-------------|
-| [API_TESTING_GUIDE.md] | API endpoints with examples |
-
+| [API_TESTING_GUIDE.md](API_TESTING_GUIDE.md) | API endpoints with examples |
 
 ## Features
 
@@ -77,7 +79,7 @@ npm start
 
 ## Database Schema
 
-### **Tasks Table**
+### **Tasks Table** (InMemory)
 | Column      | Type          | Constraints                    |
 |-------------|---------------|--------------------------------|
 | Id          | INT           | PRIMARY KEY, IDENTITY(1,1)     |
@@ -91,15 +93,19 @@ npm start
 - `IX_Tasks_Status` on Status column
 - `IX_Tasks_Deadline` on Deadline column
 
+**Note:** Using InMemory database - no SQL Server required. Data resets on application restart.
+
 ## Local Setup Instructions
 
 ### **Prerequisites**
 - .NET 8.0 SDK
+- Node.js 18+ (for frontend)
 - Visual Studio 2022 / VS Code / Rider
+- Docker Desktop (optional, for containerized deployment)
 
 ###  **Access Swagger Documentation**
 
-The API will start at: `http://localhost:5059`
+The API will start at: `http://localhost:5059`  
 Navigate to: `http://localhost:5059/swagger`
 
 ## API Endpoints
@@ -129,7 +135,7 @@ Logs are written to:
 
 The application includes global exception handling middleware that returns structured error responses:
 
-## **Validation Error Response**
+### **Validation Error Response**
 ```json
 {
   "success": false,

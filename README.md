@@ -1,7 +1,7 @@
-# VP-ToDoApp
+# -ToDoApp
 Verbund Pflegehilfe - ToDo App
 
-# VP ToDo App - Full Stack Application
+#  ToDo App - Full Stack Application
 
 ToDo application backend built with .NET 8, following **Clean Architecture** principles with **CQRS pattern**, **MediatR**, **Repository Pattern**, **In Memory**, and comprehensive logging using **Serilog**.
 
@@ -21,7 +21,7 @@ Choose your preferred deployment method:
 **Backend:**
 ```bash
 # Navigate to the backend project directory
-cd VP-ToDo-App
+cd -ToDo-App
 
 # Run the backend
 dotnet run
